@@ -1,17 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import MapaContainer from '../components/Mapa/MapaContainer';
 
-const Home = ({ str }) => {
-  return <div>HOME {str}</div>;
-};
-
-Home.propTypes = {
-  str: PropTypes.string,
-};
-
-const mapStateToProps = state => ({
-  str: state.home,
-});
-
-export default connect(mapStateToProps)(Home);
+function Home() {
+  return <MapaContainer />;
+}
+export default Home;

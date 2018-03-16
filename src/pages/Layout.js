@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import routes from '../routes';
 
 const Routes = () => (
@@ -17,9 +17,8 @@ const Routes = () => (
 
 const Document = () => (
   <Fragment>
-    <div>Layout</div>
     <Routes />
   </Fragment>
 );
 
-export default Document;
+export default withRouter(Document);
