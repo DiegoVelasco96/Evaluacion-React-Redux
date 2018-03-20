@@ -1,11 +1,12 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from './reducers';
+import thunk from 'redux-thunk';
+import mapa from './Mapa/reducers';
 
-const store = createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(thunk)),
-);
+const middleware = composeWithDevTools(applyMiddleware(thunk));
 
-export default store;
+const app = combineReducers({
+  mapa,
+});
+
+export default createStore(app, middleware);

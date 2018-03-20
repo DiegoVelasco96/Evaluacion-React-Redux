@@ -7,6 +7,7 @@ const ContentMapa = styled.div`
   background-image: url('assets/images/mapa.png');
   background-repeat: no-repeat;
   background-size: contain;
+  margin: auto;
 `;
 
 function Mapa() {

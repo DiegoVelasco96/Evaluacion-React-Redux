@@ -7,7 +7,8 @@ class InstanceAxios {
     const headers = {};
 
     this._instance = axios.create({
-      baseURL: process.env.REACT_APP_API || 'http://localhost:8080',
+      baseURL:
+        'https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json',
       headers,
     });
   }
