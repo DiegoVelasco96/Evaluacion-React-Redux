@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button, Switch, InputNumber, Input } from 'antd';
 import styled from 'styled-components';
+import * as actions from '../../state/Mapa/action';
 
 const ContentFilters = styled.div`
   width: 1024px;
@@ -27,7 +28,10 @@ class Filters extends Component {
             />
           </Col>
           <Col xs={24} sm={24} md={24} lg={3}>
-            <Button type="primary" loading={false}>
+            <Button
+              type="primary"
+              loading={this.props.loading}
+              onClick={this.props.getAllAircraft}>
               Actualizar
             </Button>
           </Col>
@@ -51,6 +55,7 @@ class Filters extends Component {
 
 const mapStateToProps = state => ({
   vuelos: state.mapa.aircraf,
+  loading: state.mapa.loading,
 });
 
-export default connect(mapStateToProps)(Filters);
+export default connect(mapStateToProps, actions)(Filters);
