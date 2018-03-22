@@ -7,6 +7,14 @@ import Filters from './Filters';
 class MapaContainer extends Component {
   componentDidMount() {
     this.props.getAllAircraft();
+
+    setInterval(() => this.realTime(), 20000);
+  }
+
+  realTime() {
+    if (this.props.realTime) {
+      this.props.getAllAircraft();
+    }
   }
 
   render() {
@@ -19,4 +27,9 @@ class MapaContainer extends Component {
   }
 }
 
-export default connect(null, actions)(MapaContainer);
+const mapStateToProps = state => ({
+  realTime: state.mapa.realTime,
+  vuelos: state.mapa.aircraf,
+});
+
+export default connect(mapStateToProps, actions)(MapaContainer);

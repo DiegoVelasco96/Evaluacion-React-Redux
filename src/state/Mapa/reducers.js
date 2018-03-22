@@ -1,9 +1,16 @@
-import { GET_AIRCRAFT, SET_PROGRESS_MAPA, SET_REAL_TIME } from './const';
+import {
+  GET_AIRCRAFT,
+  SET_PROGRESS_MAPA,
+  SET_REAL_TIME,
+  SHOW_AIR,
+} from './const';
 
 const initialState = {
   aircraf: [],
+  enVuelo: 0,
   loading: false,
   realTime: false,
+  showAir: 100,
 };
 
 function Mapa(state = initialState, action) {
@@ -16,12 +23,13 @@ function Mapa(state = initialState, action) {
     case SET_REAL_TIME:
       return {
         ...state,
-        realTime: true,
+        realTime: action.realTime,
       };
     case GET_AIRCRAFT:
       return {
         ...state,
         aircraf: action.data,
+        enVuelo: action.enVuelo,
         loading: false,
       };
     default:

@@ -15,14 +15,13 @@ const Label = styled.label`
 
 class Filters extends Component {
   render() {
-    const totalVuelo = this.props.vuelos.length;
     return (
       <ContentFilters>
         <Row>
           <Col xs={24} sm={24} md={24} lg={3}>
             <Input
               size="small"
-              value={'En vuelo ' + totalVuelo}
+              value={'En vuelo ' + this.props.enVuelo}
               disabled={true}
               style={{ width: '110px' }}
             />
@@ -37,11 +36,14 @@ class Filters extends Component {
           </Col>
           <Col xs={24} sm={24} md={24} lg={4}>
             <Label>Tiempo real:</Label>
-            <Switch />
+            <Switch onChange={this.props.setRealTime} />
           </Col>
           <Col xs={24} sm={24} md={24} lg={6}>
             <Label>Cantidad de aviones:</Label>
-            <InputNumber />
+            <InputNumber
+              defaultValue={this.props.countShowAir}
+              onChange={this.props.showAir}
+            />
           </Col>
           <Col xs={24} sm={24} md={24} lg={6}>
             <Label>País:</Label>
@@ -55,7 +57,9 @@ class Filters extends Component {
 
 const mapStateToProps = state => ({
   vuelos: state.mapa.aircraf,
+  enVuelo: state.mapa.enVuelo,
   loading: state.mapa.loading,
+  countShowAir: state.mapa.showAir,
 });
 
 export default connect(mapStateToProps, actions)(Filters);
