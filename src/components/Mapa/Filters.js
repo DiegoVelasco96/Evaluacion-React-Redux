@@ -14,6 +14,10 @@ const Label = styled.label`
 `;
 
 class Filters extends Component {
+  onchangeCountry = e => {
+    this.props.showAirCountry(e.target.value);
+  };
+
   render() {
     return (
       <ContentFilters>
@@ -47,7 +51,7 @@ class Filters extends Component {
           </Col>
           <Col xs={24} sm={24} md={24} lg={6}>
             <Label>País:</Label>
-            <Input style={{ width: '200px' }} />
+            <Input style={{ width: '200px' }} onChange={this.onchangeCountry} />
           </Col>
         </Row>
       </ContentFilters>

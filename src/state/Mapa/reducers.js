@@ -3,14 +3,17 @@ import {
   SET_PROGRESS_MAPA,
   SET_REAL_TIME,
   SHOW_AIR,
+  SET_FILTER_COUNTRY,
 } from './const';
 
 const initialState = {
   aircraf: [],
+  aircrafTemp: [],
   enVuelo: 0,
   loading: false,
   realTime: false,
-  showAir: 100,
+  showAir: 1000,
+  filterCountry: '',
 };
 
 function Mapa(state = initialState, action) {
@@ -29,8 +32,21 @@ function Mapa(state = initialState, action) {
       return {
         ...state,
         aircraf: action.data,
+        aircrafTemp: action.dataTemp,
         enVuelo: action.enVuelo,
         loading: false,
+      };
+    case SHOW_AIR:
+      return {
+        ...state,
+        aircraf: action.data,
+        aircrafTemp: action.dataTemp,
+        showAir: action.showAir,
+      };
+    case SET_FILTER_COUNTRY:
+      return {
+        ...state,
+        filterCountry: action.filterCountry,
       };
     default:
       return state;
