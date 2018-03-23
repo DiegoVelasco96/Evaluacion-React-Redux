@@ -29,7 +29,6 @@ class MapaContainer extends Component {
 
 const mapStateToProps = state => ({
   realTime: state.mapa.realTime,
-  vuelos: state.mapa.aircraf,
 });
 
 export default connect(mapStateToProps, actions)(MapaContainer);

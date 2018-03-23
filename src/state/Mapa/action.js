@@ -59,7 +59,7 @@ const getAllAircraft = () => (dispatch, getActualState) => {
     const enVuelo = response.data.acList.length;
     let request = [];
     const arrAcList = response.data.acList.filter(vuelo => {
-      return vuelo.Lat && vuelo.Long;
+      return vuelo.Lat && vuelo.Long && vuelo.Alt && vuelo.Cou;
     });
     const arrAcListTemp = [...arrAcList];
     arrAcList.splice(showAir, enVuelo);
@@ -82,8 +82,15 @@ const setRealTime = realTime => dispatch => {
 const showAir = cantidad => (dispatch, getActualState) => {
   const allAircraft = [...getActualState().mapa.aircrafTemp];
   const showAircraft = [...getActualState().mapa.aircrafTemp];
+  const filterCountry = getActualState().mapa.filterCountry;
+  let request = [];
   showAircraft.splice(cantidad, allAircraft.length);
-  dispatch(showAircraftSuccess(showAircraft, allAircraft, cantidad));
+  if (filterCountry) {
+    request = hiddenData(showAircraft, filterCountry);
+  } else {
+    request = showAircraft;
+  }
+  dispatch(showAircraftSuccess(request, allAircraft, cantidad));
 };
 
 const showAirCountry = county => (dispatch, getActualState) => {
